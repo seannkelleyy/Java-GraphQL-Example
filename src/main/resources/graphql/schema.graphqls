@@ -1,0 +1,29 @@
+type Query {
+	goalById(id: ID): Goal
+	goalsByUserId(userId: ID): [Goal]
+	budgetById(id: ID): Budget
+	budgetsByUserId(userId: ID): [Budget]
+}
+
+type Goal {
+	id: ID
+	goal: String
+	isCompleted: Boolean
+	user: User
+}
+
+type User {
+	id: ID
+	firstName: String
+	lastName: String
+}
+
+type Budget {
+	id: ID
+	year: Int
+	month: Int
+	income: Float
+	expenses: Float
+	user: User
+}
+
