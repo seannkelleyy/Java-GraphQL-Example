@@ -14,7 +14,7 @@ import java.util.List;
 
 public record User (Integer id, String firstName, String lastName) {
 
-    private static List<User> users = Arrays.asList(
+    private static final List<User> users = Arrays.asList(
             new User(1, "Sean", "Kelley"),
             new User(2, "Aalissia", "Kelley"),
             new User(3, "Lulah", "Kelley")

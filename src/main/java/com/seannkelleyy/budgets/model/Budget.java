@@ -14,7 +14,7 @@ import java.util.List;
  */
 public record Budget(Integer id, Integer year, Integer month, double income, double expenses, Integer userId) {
     
-    private static List<Budget> budgets = Arrays.asList(
+    private static final List<Budget> budgets = Arrays.asList(
             new Budget(1, 2024, 10, 5000.00, 3000.00, 1),
             new Budget(2, 2024, 11, 5000.00, 3000.00, 2),
             new Budget(3, 2024, 12, 5000.00, 3000.00, 2),

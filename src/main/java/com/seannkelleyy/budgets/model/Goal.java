@@ -14,7 +14,7 @@ import java.util.List;
 
 public record Goal (Integer id, String goal, Boolean isCompleted, Integer userId) {
 
-    private static List<Goal> goals = Arrays.asList(
+    private static final List<Goal> goals = Arrays.asList(
             new Goal(1, "Pay off house", false, 1),
             new Goal(2, "Buy a new car", true, 3),
             new Goal(3, "Take a vacation", true, 2),
