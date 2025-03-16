@@ -60,4 +60,75 @@ import org.springframework.graphql.test.tester.GraphQlTester;
                 .equals(null);
     }
 
+    @Test
+    void createUser_validUserDetails_returnsUserDetails() {
+        this.graphQlTester.document("""
+                            mutation createUser($firstName: String!, $lastName: String!) {
+                                createUser(firstName: $firstName, lastName: $lastName) {
+                                    firstName
+                                    lastName
+                                }
+                            }
+                """)
+                .variable("firstName", "Test")
+                .variable("lastName", "User")
+                .execute()
+                .path("createUser")
+                .matchesJson("""
+                            {
+                                "firstName": "Test",
+                                "lastName": "User"
+                            }
+                        """);
+    }
+
+    @Test
+    void updateUser_validUserDetails_returnsUserDetails() {
+        this.graphQlTester.document("""
+                            mutation updateUser($id: ID!, $firstName: String!, $lastName: String!) {
+                                updateUser(id: $id, firstName: $firstName, lastName: $lastName) {
+                                    id
+                                    firstName
+                                    lastName
+                                }
+                            }
+                """)
+                .variable("id", "1")
+                .variable("firstName", "Test")
+                .variable("lastName", "User")
+                .execute()
+                .path("updateUser")
+                .matchesJson("""
+                            {
+                                "id": "1",
+                                "firstName": "Test",
+                                "lastName": "User"
+                            }
+                        """);
+    }
+
+    @Test
+    void deleteUser_validUserId_returnsUserDetails() {
+        this.graphQlTester.document("""
+                            mutation deleteUser($id: ID!) {
+                                deleteUser(id: $id) {
+                                    id
+                                    firstName
+                                    lastName
+                                }
+                            }
+                """)
+                .variable("id", "1")
+                .execute()
+                .path("deleteUser")
+                .matchesJson("""
+                            {
+                                "id": "1",
+                                "firstName": "Sean",
+                                "lastName": "Kelley"
+                            }
+                        """);
+    }
+    
+
 }

@@ -7,9 +7,22 @@ type Query {
 	incomeById(id: ID): Income
 	incomesByUserId(userId: ID): [Income]
 	userById(id: ID): User
+	allUsers: [User]
 	expenseById(id: ID): Expense
 	expensesByBudgetId(budgetId: ID): [Expense]
 	expensesByUserId(userId: ID): [Expense]
+}
+
+type Mutation {
+	createUser(firstName: String!, lastName: String!): User
+	updateUser(id: ID!, firstName: String, lastName: String): User
+	deleteUser(id: ID!): User
+}
+
+type User {
+	id: ID
+	firstName: String
+	lastName: String
 }
 
 type Goal {
@@ -17,12 +30,6 @@ type Goal {
 	goal: String
 	isCompleted: Boolean
 	user: User
-}
-
-type User {
-	id: ID
-	firstName: String
-	lastName: String
 }
 
 type Budget {
