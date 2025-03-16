@@ -7,6 +7,9 @@ type Query {
 	incomeById(id: ID): Income
 	incomesByUserId(userId: ID): [Income]
 	userById(id: ID): User
+	expenseById(id: ID): Expense
+	expensesByBudgetId(budgetId: ID): [Expense]
+	expensesByUserId(userId: ID): [Expense]
 }
 
 type Goal {
@@ -32,6 +35,14 @@ type Budget {
 }
 
 type Income {
+	id: ID
+	name: String
+	amount: Float
+	budget: Budget
+	user: User
+}
+
+type Expense {
 	id: ID
 	name: String
 	amount: Float
