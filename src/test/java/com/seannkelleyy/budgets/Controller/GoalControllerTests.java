@@ -14,23 +14,21 @@ import org.springframework.graphql.test.tester.GraphQlTester;
  *
  * @author seankelley
  */
-@GraphQlTest(BudgetController.class)
-public class BudgetControllerTests {
-
+ @GraphQlTest(GoalController.class)
+ public class GoalControllerTests {
+    
     @Autowired
     private GraphQlTester graphQlTester;
 
     @Test
-    void getBudgetById_validBudgetId_returnsBudgetDetails() {
+    void getGoalById_validGoalId_returnsGoalDetails() {
         this.graphQlTester
                 .document("""
-                            query budgetDetails($id: ID!) {
-                                budgetById(id: $id) {
+                            query goalDetails($id: ID!) {
+                                goalById(id: $id) {
                                     id
-                                    year
-                                    month
-                                    income
-                                    expenses
+                                    goal
+                                    isCompleted
                                     user {
                                         id
                                         firstName
@@ -39,19 +37,17 @@ public class BudgetControllerTests {
                                 }
                             }
                         """)
-                .variable("id", "2")
+                .variable("id", "1")
                 .execute()
-                .path("budgetById")
+                .path("goalById")
                 .matchesJson("""
                             {
-                                "id": "2",
-                                "year": 2024,
-                                "month": 11,
-                                "income": 5000,
-                                "expenses": 3000,
+                                "id": "1",
+                                "goal": "Pay off house",
+                                "isCompleted": false,
                                 "user": {
-                                    "id": "2",
-                                    "firstName": "Aalissia",
+                                    "id": "1",
+                                    "firstName": "Sean",
                                     "lastName": "Kelley"
                                 }
                             }
@@ -59,16 +55,14 @@ public class BudgetControllerTests {
     }
 
     @Test
-    void getBudgetById_invalidBudgetId_returnsNull() {
+    void getGoalById_invalidGoalId_returnsNull() {
         this.graphQlTester
                 .document("""
-                            query budgetDetails($id: ID!) {
-                                budgetById(id: $id) {
+                            query goalDetails($id: ID!) {
+                                goalById(id: $id) {
                                     id
-                                    year
-                                    month
-                                    income
-                                    expenses
+                                    goal
+                                    isCompleted
                                     user {
                                         id
                                         firstName
@@ -77,22 +71,20 @@ public class BudgetControllerTests {
                                 }
                             }
                         """)
-                .variable("id", "4")
+                .variable("id", "7")
                 .execute()
-                .path("budgetById").equals(null);
+                .path("goalById").equals(null);
     }
 
     @Test
-    void getBudgetByUserId_validUserId_returnsBudgetDetailsList() {
+    void getGoalsByUserId_validUserId_returnsGoalDetailsList() {
         this.graphQlTester
                 .document("""
-                            query budgetsByUserId($userId: ID!) {
-                                budgetsByUserId(userId: $userId) {
+                            query goalsByUserId($userId: ID!) {
+                                goalsByUserId(userId: $userId) {
                                     id
-                                    year
-                                    month
-                                    income
-                                    expenses
+                                    goal
+                                    isCompleted
                                     user {
                                         id
                                         firstName
@@ -103,15 +95,13 @@ public class BudgetControllerTests {
                         """)
                 .variable("userId", "2")
                 .execute()
-                .path("budgetsByUserId")
+                .path("goalsByUserId")
                 .matchesJson("""
                             [
                                 {
-                                    "id": "2",
-                                    "year": 2024,
-                                    "month": 11,
-                                    "income": 5000,
-                                    "expenses": 3000,
+                                    "id": "3",
+                                    "goal": "Take a vacation",
+                                    "isCompleted": true,
                                     "user": {
                                         "id": "2",
                                         "firstName": "Aalissia",
@@ -119,11 +109,9 @@ public class BudgetControllerTests {
                                     }
                                 },
                                 {
-                                    "id": "3",
-                                    "year": 2024,
-                                    "month": 12,
-                                    "income": 5000,
-                                    "expenses": 3000,
+                                    "id": "4",
+                                    "goal": "Buy a new house",
+                                    "isCompleted": true,
                                     "user": {
                                         "id": "2",
                                         "firstName": "Aalissia",
@@ -135,16 +123,14 @@ public class BudgetControllerTests {
     }
 
     @Test
-    void getBudgetByUserId_validUserId_returnsEmptyList() {
+    void getGoalsByUserId_invalidUserId_returnsEmptyList() {
         this.graphQlTester
                 .document("""
-                            query budgetsByUserId($userId: ID!) {
-                                budgetsByUserId(userId: $userId) {
+                            query goalsByUserId($userId: ID!) {
+                                goalsByUserId(userId: $userId) {
                                     id
-                                    year
-                                    month
-                                    income
-                                    expenses
+                                    goal
+                                    isCompleted
                                     user {
                                         id
                                         firstName
@@ -153,9 +139,9 @@ public class BudgetControllerTests {
                                 }
                             }
                         """)
-                .variable("userId", "4")
+                .variable("userId", "-1")
                 .execute()
-                .path("budgetsByUserId")
+                .path("goalsByUserId")
                 .matchesJson("""
                             []
                         """);

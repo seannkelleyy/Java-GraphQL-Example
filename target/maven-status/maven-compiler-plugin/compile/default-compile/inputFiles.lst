@@ -1,8 +1,10 @@
 /Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/BudgetsApplication.java
 /Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/Controller/BudgetController.java
 /Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/Controller/GoalController.java
+/Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/Controller/IncomeController.java
 /Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/model/Budget.java
 /Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/model/Goal.java
+/Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/model/Income.java
 /Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/model/User.java
 /Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/repository/AuthorRepository.java
 /Users/seankelley/Development/Projects/Java-GraphQL-Example/src/main/java/com/seannkelleyy/budgets/repository/BookRepository.java
