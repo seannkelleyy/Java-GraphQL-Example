@@ -10,7 +10,7 @@ import java.util.List;
 
 public record User (Integer id, String firstName, String lastName) {
 
-    private static List<User> users = new ArrayList<>(List.of(
+    private static final List<User> users = new ArrayList<>(List.of(
             new User(1, "Sean", "Kelley"),
             new User(2, "Aalissia", "Kelley"),
             new User(3, "Lulah", "Kelley")
