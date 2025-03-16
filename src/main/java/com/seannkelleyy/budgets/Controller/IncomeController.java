@@ -8,6 +8,7 @@ package com.seannkelleyy.budgets.Controller;
 import java.util.List;
 
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,23 @@ import com.seannkelleyy.budgets.model.User;
         return Income.getByBudgetId(budgetId);
     }
 
+    @MutationMapping
+    public Income createIncome(@Argument String name, @Argument Double amount, @Argument Integer budgetId,
+            @Argument Integer userId) {
+        return Income.createIncome(name, amount, budgetId, userId);
+    }
+    
+    @MutationMapping
+    public Income updateIncome(@Argument Integer id, @Argument String name, @Argument Double amount,
+            @Argument Integer budgetId, @Argument Integer userId) {
+        return Income.updateIncome(id, name, amount, budgetId, userId);
+    }
+
+    @MutationMapping
+    public Income deleteIncome(@Argument Integer id) {
+        return Income.deleteIncome(id);
+    }
+    
     @SchemaMapping
     public User user(Income income) {
         return User.getById(income.userId());

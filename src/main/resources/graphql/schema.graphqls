@@ -37,6 +37,11 @@ type Mutation {
 	createBudget(year: Int!, month: Int!, income: Float, expenses: Float, userId: ID!): Budget
 	updateBudget(id: ID!, year: Int, month: Int, income: Float, expenses: Float, userId: ID!): Budget
 	deleteBudget(id: ID!): Budget
+
+	#incomes
+	createIncome(name: String!, amount: Float!, budgetId: ID!, userId: ID!): Income
+	updateIncome(id: ID!, name: String, amount: Float, budgetId: ID!, userId: ID!): Income
+	deleteIncome(id: ID!): Income
 }
 
 type User {
