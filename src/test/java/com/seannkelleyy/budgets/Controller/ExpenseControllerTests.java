@@ -95,7 +95,7 @@ public class ExpenseControllerTests {
                 .variable("id", "-1")
                 .execute()
                 .path("expenseById")
-                .equals(null);
+                .valueIsNull();
     }
 
     @Test

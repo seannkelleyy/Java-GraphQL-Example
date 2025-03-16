@@ -83,9 +83,10 @@ public class BudgetControllerTests {
                                 }
                             }
                         """)
-                .variable("id", "4")
+                .variable("id", "-1")
                 .execute()
-                .path("budgetById").equals(null);
+                .path("budgetById")
+                .valueIsNull();
     }
 
     @Test

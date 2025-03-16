@@ -63,7 +63,7 @@ public class UserControllerTests {
                 .variable("id", "-1")
                 .execute()
                 .path("userById")
-                .equals(null);
+                .valueIsNull();
     }
 
     @Test

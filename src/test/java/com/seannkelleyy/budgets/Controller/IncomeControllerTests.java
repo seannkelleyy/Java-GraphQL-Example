@@ -87,7 +87,7 @@ public class IncomeControllerTests {
                 .variable("id", "-1")
                 .execute()
                 .path("incomeById")
-                .equals(null);
+                .valueIsNull();
     }
 
     @Test

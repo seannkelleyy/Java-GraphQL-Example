@@ -79,7 +79,8 @@ public class GoalControllerTests {
                         """)
                 .variable("id", "7")
                 .execute()
-                .path("goalById").equals(null);
+                .path("goalById")
+                .valueIsNull();
     }
 
     @Test
