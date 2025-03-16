@@ -5,7 +5,10 @@
 
 package com.seannkelleyy.budgets.Controller;
 
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
 import org.springframework.graphql.test.tester.GraphQlTester;
@@ -14,13 +17,15 @@ import org.springframework.graphql.test.tester.GraphQlTester;
  *
  * @author seankelley
  */
-  @GraphQlTest(UserController.class)
-  public class UserControllerTests {
+@GraphQlTest(UserController.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class UserControllerTests {
 
     @Autowired
     private GraphQlTester graphQlTester;
 
     @Test
+    @Order(1)
     void getUserById_validUserId_returnsUserDetails() {
         this.graphQlTester.document("""
                             query userDetails($id: ID!) {
@@ -44,6 +49,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
     
     @Test
+    @Order(2)
     void getUserById_invalidUserId_returnsNull() {
         this.graphQlTester.document("""
                             query userDetails($id: ID!) {
@@ -61,6 +67,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
 
     @Test
+    @Order(3)
     void createUser_validUserDetails_returnsUserDetails() {
         this.graphQlTester.document("""
                             mutation createUser($firstName: String!, $lastName: String!) {
@@ -83,6 +90,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
 
     @Test
+    @Order(4)
     void updateUser_validUserDetails_returnsUserDetails() {
         this.graphQlTester.document("""
                             mutation updateUser($id: ID!, $firstName: String!, $lastName: String!) {
@@ -108,6 +116,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
 
     @Test
+    @Order(5)
     void deleteUser_validUserId_returnsUserDetails() {
         this.graphQlTester.document("""
                             mutation deleteUser($id: ID!) {
@@ -129,6 +138,5 @@ import org.springframework.graphql.test.tester.GraphQlTester;
                             }
                         """);
     }
-    
 
 }

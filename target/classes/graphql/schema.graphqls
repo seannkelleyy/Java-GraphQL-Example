@@ -32,6 +32,11 @@ type Mutation {
 	createGoal(goal: String!, isCompleted: Boolean, userId: ID!): Goal
 	updateGoal(id: ID!, goal: String, isCompleted: Boolean, userId: ID!): Goal
 	deleteGoal(id: ID!): Goal
+
+	#budgets
+	createBudget(year: Int!, month: Int!, income: Float, expenses: Float, userId: ID!): Budget
+	updateBudget(id: ID!, year: Int, month: Int, income: Float, expenses: Float, userId: ID!): Budget
+	deleteBudget(id: ID!): Budget
 }
 
 type User {

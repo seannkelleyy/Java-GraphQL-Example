@@ -5,7 +5,10 @@
 
 package com.seannkelleyy.budgets.Controller;
 
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
 import org.springframework.graphql.test.tester.GraphQlTester;
@@ -14,13 +17,15 @@ import org.springframework.graphql.test.tester.GraphQlTester;
  *
  * @author seankelley
  */
- @GraphQlTest(GoalController.class)
- public class GoalControllerTests {
+@GraphQlTest(GoalController.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class GoalControllerTests {
     
     @Autowired
     private GraphQlTester graphQlTester;
 
     @Test
+    @Order(1)
     void getGoalById_validGoalId_returnsGoalDetails() {
         this.graphQlTester
                 .document("""
@@ -55,6 +60,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
 
     @Test
+    @Order(2)
     void getGoalById_invalidGoalId_returnsNull() {
         this.graphQlTester
                 .document("""
@@ -77,6 +83,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
 
     @Test
+    @Order(3)
     void getGoalsByUserId_validUserId_returnsGoalDetailsList() {
         this.graphQlTester
                 .document("""
@@ -123,6 +130,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
 
     @Test
+    @Order(4)
     void getGoalsByUserId_invalidUserId_returnsEmptyList() {
         this.graphQlTester
                 .document("""
@@ -148,6 +156,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
 
     @Test
+    @Order(5)
     void createGoal_validGoalDetails_returnsGoalDetails() {
         this.graphQlTester
                 .document("""
@@ -184,6 +193,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
 
     @Test
+    @Order(6)
     void updateGoal_validGoalDetails_returnsGoalDetails() {
         this.graphQlTester
                 .document("""
@@ -221,6 +231,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
     }
 
     @Test
+    @Order(7)
     void deleteGoal_validGoalId_returnsGoalDetails() {
         this.graphQlTester
                 .document("""
