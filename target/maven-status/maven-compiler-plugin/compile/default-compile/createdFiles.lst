@@ -1,6 +1,3 @@
-com/seannkelleyy/budgets/model/User.class
 com/seannkelleyy/budgets/model/Budget.class
 com/seannkelleyy/budgets/model/Goal.class
-com/seannkelleyy/budgets/Controller/GoalController.class
 com/seannkelleyy/budgets/BudgetsApplication.class
-com/seannkelleyy/budgets/Controller/BudgetController.class

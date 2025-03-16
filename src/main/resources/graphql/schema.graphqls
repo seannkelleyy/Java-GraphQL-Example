@@ -6,6 +6,7 @@ type Query {
 	incomesByBudgetId(budgetId: ID): [Income]
 	incomeById(id: ID): Income
 	incomesByUserId(userId: ID): [Income]
+	userById(id: ID): User
 }
 
 type Goal {
