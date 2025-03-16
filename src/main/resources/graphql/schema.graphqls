@@ -1,22 +1,37 @@
 type Query {
-	goalById(id: ID): Goal
-	goalsByUserId(userId: ID): [Goal]
-	budgetById(id: ID): Budget
-	budgetsByUserId(userId: ID): [Budget]
-	incomesByBudgetId(budgetId: ID): [Income]
-	incomeById(id: ID): Income
-	incomesByUserId(userId: ID): [Income]
+	#users
 	userById(id: ID): User
 	allUsers: [User]
+
+	#goals
+	goalById(id: ID): Goal
+	goalsByUserId(userId: ID): [Goal]
+
+	#budgets
+	budgetById(id: ID): Budget
+	budgetsByUserId(userId: ID): [Budget]
+
+	#incomes
+	incomeById(id: ID): Income
+	incomesByBudgetId(budgetId: ID): [Income]
+	incomesByUserId(userId: ID): [Income]
+
+	#expenses
 	expenseById(id: ID): Expense
 	expensesByBudgetId(budgetId: ID): [Expense]
 	expensesByUserId(userId: ID): [Expense]
 }
 
 type Mutation {
+	#users
 	createUser(firstName: String!, lastName: String!): User
 	updateUser(id: ID!, firstName: String, lastName: String): User
 	deleteUser(id: ID!): User
+
+	#goals
+	createGoal(goal: String!, isCompleted: Boolean, userId: ID!): Goal
+	updateGoal(id: ID!, goal: String, isCompleted: Boolean, userId: ID!): Goal
+	deleteGoal(id: ID!): Goal
 }
 
 type User {

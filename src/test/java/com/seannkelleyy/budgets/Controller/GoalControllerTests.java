@@ -146,4 +146,111 @@ import org.springframework.graphql.test.tester.GraphQlTester;
                             []
                         """);
     }
+
+    @Test
+    void createGoal_validGoalDetails_returnsGoalDetails() {
+        this.graphQlTester
+                .document("""
+                            mutation createGoal($goal: String!, $isCompleted: Boolean!, $userId: ID!) {
+                                createGoal(goal: $goal, isCompleted: $isCompleted, userId: $userId) {
+                                    id
+                                    goal
+                                    isCompleted
+                                    user {
+                                        id
+                                        firstName
+                                        lastName
+                                    }
+                                }
+                            }
+                        """)
+                .variable("goal", "Test Goal")
+                .variable("isCompleted", false)
+                .variable("userId", "1")
+                .execute()
+                .path("createGoal")
+                .matchesJson("""
+                            {
+                                "id": "7",
+                                "goal": "Test Goal",
+                                "isCompleted": false,
+                                "user": {
+                                    "id": "1",
+                                    "firstName": "Sean",
+                                    "lastName": "Kelley"
+                                }
+                            }
+                        """);
+    }
+
+    @Test
+    void updateGoal_validGoalDetails_returnsGoalDetails() {
+        this.graphQlTester
+                .document("""
+                            mutation updateGoal($id: ID!, $goal: String!, $isCompleted: Boolean!, $userId: ID!) {
+                                updateGoal(id: $id, goal: $goal, isCompleted: $isCompleted, userId: $userId) {
+                                    id
+                                    goal
+                                    isCompleted
+                                    user {
+                                        id
+                                        firstName
+                                        lastName
+                                    }
+                                }
+                            }
+                        """)
+                .variable("id", "1")
+                .variable("goal", "Updated Goal")
+                .variable("isCompleted", true)
+                .variable("userId", "1")
+                .execute()
+                .path("updateGoal")
+                .matchesJson("""
+                            {
+                                "id": "1",
+                                "goal": "Updated Goal",
+                                "isCompleted": true,
+                                "user": {
+                                    "id": "1",
+                                    "firstName": "Sean",
+                                    "lastName": "Kelley"
+                                }
+                            }
+                        """);
+    }
+
+    @Test
+    void deleteGoal_validGoalId_returnsGoalDetails() {
+        this.graphQlTester
+                .document("""
+                            mutation deleteGoal($id: ID!) {
+                                deleteGoal(id: $id) {
+                                    id
+                                    goal
+                                    isCompleted
+                                    user {
+                                        id
+                                        firstName
+                                        lastName
+                                    }
+                                }
+                            }
+                        """)
+                .variable("id", "1")
+                .execute()
+                .path("deleteGoal")
+                .matchesJson("""
+                            {
+                                "id": "1",
+                                "goal": "Pay off house",
+                                "isCompleted": false,
+                                "user": {
+                                    "id": "1",
+                                    "firstName": "Sean",
+                                    "lastName": "Kelley"
+                                }
+                            }
+                        """);
+    } 
 }
